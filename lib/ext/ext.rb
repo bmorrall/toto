@@ -22,7 +22,7 @@ class String
   end
 end
 
-class Fixnum
+class Integer
   def ordinal
     # 1 => 1st
     # 2 => 2nd
