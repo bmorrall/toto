@@ -1,18 +1,18 @@
-require 'rubygems'
-require 'hpricot'
+require 'bundler/setup'
+require 'toto'
+
+require 'nokogiri'
 require 'riot'
 
 $:.unshift File.dirname(__FILE__)
 $:.unshift File.join(File.dirname(__FILE__), '..', 'lib')
-
-require 'toto'
 
 module Toto
   class IncludesHTMLMacro < Riot::AssertionMacro
     register :includes_html
 
     def evaluate(actual, expected)
-      doc = Hpricot.parse(actual)
+      doc = Nokogiri.parse(actual)
       expected = expected.to_a.flatten
 
       if (doc/expected.first).empty?
@@ -29,7 +29,7 @@ module Toto
     register :includes_elements
 
     def evaluate(actual, selector, count)
-      doc = Hpricot.parse(actual)
+      doc = Nokogiri.parse(actual)
       (doc/selector).size == count ? pass : fail("expected #{actual} to contain #{count} #{selector}(s)")
     end
   end

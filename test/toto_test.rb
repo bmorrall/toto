@@ -1,4 +1,4 @@
-require 'test/test_helper'
+require 'test_helper'
 require 'date'
 
 URL = "http://toto.oz"
@@ -281,5 +281,3 @@ context Toto do
     should("respond to iso8601") { Date.today }.respond_to?(:iso8601)
   end
 end
-
-
